@@ -143,7 +143,7 @@ public class ListenerPlayOnline extends ListenerGomoku {
 								}
 
 							}
-
+							getAssets(i, j).setEnabled(false);
 							assets[i][j].setName(dataOnServer);
 							in.close();
 						}
