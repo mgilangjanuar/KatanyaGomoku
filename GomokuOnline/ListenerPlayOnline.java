@@ -230,7 +230,12 @@ public class ListenerPlayOnline extends ListenerGomoku {
 	public void setEnable(boolean status) {
 		for (int i = 0; i < getRows(); i++) {
 			for (int j = 0; j < getCols(); j++) {
-				getAssets(i, j).setEnabled(status);
+				if (getAssets(i, j).getName().charAt(0) != 'X'
+						&& getAssets(i, j).getName().charAt(0) != 'O') {
+					getAssets(i, j).setEnabled(status);
+				} else {
+					getAssets(i, j).setEnabled(false);
+				}
 			}
 		}
 		getGiveup().setEnabled(status);
