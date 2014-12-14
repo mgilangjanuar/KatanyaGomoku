@@ -16,7 +16,7 @@ And others<br><br><br>
 <h3>Bugs & Known Issues</h3>
 1.  Lag<br>
 2.  Check win when online<br>
-3.  Disable step after turn when online<br>
+3.  Disable step after turn when online (fixed: check my commit)<br>
 4.  Tell me
 <br><br><br>
 
