@@ -48,7 +48,11 @@ KatanyaGomoku Documentation API in Indonesian language <a href="http://mgilangja
 <b>v1.1.09</b><br>
 1.  Save and load to cloud<br>
 2.  Online connection bug fixes<br>
-3.  Minor changes and bug fixes<br><br>
+3.  Minor changes and bug fixes<br><br><br>
+
+<h3>Development Guide</h3>
+The development of this project has <b>stopped</b>. if you want to continue, please write my name in credit section of your project and read how to develop this at <a href="http://web.semardev.com/katanyagomoku-development-guide">http://web.semardev.com/katanyagomoku-development-guide</a>.
+<br><br><br>
 
 This repo only v1.1.09<br>
 More question? <a href="http://web.semardev.com/katanya-gomoku/">http://web.semardev.com/katanya-gomoku/</a>
