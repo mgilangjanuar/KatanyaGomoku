@@ -36,10 +36,10 @@ public class ListenerPlayOnline extends ListenerGomoku {
 	private boolean firstPlayer;
 	private String tempData;
 
-	String host = "ftp.lalala.com"; // host ftp
-	String user = "gilang"; //username ftp
-	String pass = "tanggallahir"; //pass ftp
-	String path = "http://semardev.com/"; // path di ftp
+	String host = "ftp.lalala.com";
+	String user = "gilang";
+	String pass = "tanggallahir";
+	String path = "http://semardev.com/";
 
 	/**
 	 * Konstruktor default dari kelas ListenerPlayOnline yang mendefinisikan
@@ -75,7 +75,10 @@ public class ListenerPlayOnline extends ListenerGomoku {
 						String dataOnServer = in.nextLine();
 						String timer1 = in.nextLine();
 						String timer2 = in.nextLine();
-						if (dataOnServer.equals("null")) {
+						if (dataOnServer.equals("nyerah")) {
+							JOptionPane.showMessageDialog(null, "Selamat Anda menang, lawan Anda telah menyerah.");
+							System.exit(0);
+						} else if (dataOnServer.equals("null")) {
 							if (firstPlayer) {
 								localTimer.stop();
 							} else {
@@ -294,13 +297,13 @@ public class ListenerPlayOnline extends ListenerGomoku {
 							in.close();
 						}
 					} catch (NullPointerException e1) {
-						text.append("null pointer ln : 142 "
+						text.append("null pointer ln : 297 "
 								+ getClass().getName() + "\n");
 					} catch (NoSuchElementException e1) {
-						text.append("no such element ln : 145 "
+						text.append("no such element ln : 300 "
 								+ getClass().getName() + "\n");
 					} catch (Exception e1) {
-						text.append("fatal error ln : 148 "
+						text.append("fatal error ln : 303 "
 								+ getClass().getName() + "\n");
 					}
 				} else {
@@ -316,7 +319,7 @@ public class ListenerPlayOnline extends ListenerGomoku {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (!gameover) {			
+		if (!gameover) {
 			receiveData.stop();
 			Asset cell = (Asset) e.getSource();
 			cell.setClick(true);
@@ -347,7 +350,7 @@ public class ListenerPlayOnline extends ListenerGomoku {
 					.getName())
 					+ " move to "
 					+ cell.getName().substring(1)
-					+ "\n");			
+					+ "\n");
 			PrintWriter pw;
 			try {
 				text.append("send data" + "\n");
@@ -361,10 +364,10 @@ public class ListenerPlayOnline extends ListenerGomoku {
 						+ getWhite().getName().toLowerCase() + getRows()
 						+ getCols() + ".txt", "game/");
 			} catch (FileNotFoundException e1) {
-				text.append("file not found for data.txt ln : 181 "
+				text.append("file not found for data.txt ln : 364 "
 						+ getClass().getName() + "\n");
 			} catch (NoSuchElementException e1) {
-				text.append("no such element ln : 183 " + getClass().getName()
+				text.append("no such element ln : 367 " + getClass().getName()
 						+ "\n");
 			} finally {
 				receiveData.start();
@@ -418,10 +421,10 @@ public class ListenerPlayOnline extends ListenerGomoku {
 						+ getCols() + ".txt", "game/");
 
 			} catch (FileNotFoundException e1) {
-				text.append("file not found for data.txt ln : 181 "
+				text.append("file not found for data.txt ln : 421 "
 						+ getClass().getName() + "\n");
 			} catch (NoSuchElementException e1) {
-				text.append("no such element ln : 183 " + getClass().getName()
+				text.append("no such element ln : 424 " + getClass().getName()
 						+ "\n");
 			}
 		}
@@ -469,10 +472,10 @@ public class ListenerPlayOnline extends ListenerGomoku {
 						+ getCols() + ".txt", "game/");
 
 			} catch (FileNotFoundException e1) {
-				text.append("file not found for data.txt ln : 181 "
+				text.append("file not found for data.txt ln : 472 "
 						+ getClass().getName() + "\n");
 			} catch (NoSuchElementException e1) {
-				text.append("no such element ln : 183 " + getClass().getName()
+				text.append("no such element ln : 475 " + getClass().getName()
 						+ "\n");
 			}
 		}
@@ -528,10 +531,10 @@ public class ListenerPlayOnline extends ListenerGomoku {
 						+ getCols() + ".txt", "game/");
 
 			} catch (FileNotFoundException e1) {
-				text.append("file not found for data.txt ln : 181 "
+				text.append("file not found for data.txt ln : 531 "
 						+ getClass().getName() + "\n");
 			} catch (NoSuchElementException e1) {
-				text.append("no such element ln : 183 " + getClass().getName()
+				text.append("no such element ln : 534 " + getClass().getName()
 						+ "\n");
 			}
 		}
@@ -587,10 +590,10 @@ public class ListenerPlayOnline extends ListenerGomoku {
 						+ getCols() + ".txt", "game/");
 
 			} catch (FileNotFoundException e1) {
-				text.append("file not found for data.txt ln : 181 "
+				text.append("file not found for data.txt ln : 590 "
 						+ getClass().getName() + "\n");
 			} catch (NoSuchElementException e1) {
-				text.append("no such element ln : 183 " + getClass().getName()
+				text.append("no such element ln : 593 " + getClass().getName()
 						+ "\n");
 			}
 		}

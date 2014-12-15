@@ -5,6 +5,9 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.NoSuchElementException;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -93,47 +96,26 @@ public class Board {
 								: listener.getBlack().getName()) + " nyerah?",
 						"Confirm", JOptionPane.OK_CANCEL_OPTION);
 				if (result == JOptionPane.OK_OPTION) {
-					listener.loadMusic();
-					listener.setGameover(true);
-					listener.getGiveup().setEnabled(false);
-					listener.getSwingTimer1().stop();
-					listener.getSwingTimer2().stop();
-
-					int menit = listener.getTurn() ? Integer
-							.parseInt(listener
-									.getTimer1()
-									.getText()
-									.substring(
-											0,
-											listener.getTimer1().getText()
-													.indexOf(':'))) : Integer
-							.parseInt(listener
-									.getTimer2()
-									.getText()
-									.substring(
-											0,
-											listener.getTimer1().getText()
-													.indexOf(':')));
-					int detik = listener.getTurn() ? Integer
-							.parseInt(listener
-									.getTimer1()
-									.getText()
-									.substring(
-											listener.getTimer1().getText()
-													.indexOf(':') + 1))
-							: Integer.parseInt(listener
-									.getTimer2()
-									.getText()
-									.substring(
-											listener.getTimer1().getText()
-													.indexOf(':') + 1));
-
-					JOptionPane.showMessageDialog(null, String.format(
-							"Selamat %s menang dalam %d menit dan %d detik.",
-							listener.getTurn() ? listener.getBlack().getName()
-									: listener.getWhite().getName(), menit,
-							detik));
-
+					PrintWriter pw;
+					try {
+						getListener().text.append("send data" + "\n");
+						pw = new PrintWriter("data.txt");
+						pw.println("nyerah");
+						pw.println("nyerah");
+						pw.println("nyerah");
+						pw.close();
+						getListener().getOn().uploadFile("data.txt", "gomoku"
+								+ getListener().getBlack().getName().toLowerCase()
+								+ getListener().getWhite().getName().toLowerCase() + getRows()
+								+ getCols() + ".txt", "game/");
+					} catch (FileNotFoundException e1) {
+						getListener().text.append("file not found for data.txt ln : 112 "
+								+ getClass().getName() + "\n");
+					} catch (NoSuchElementException e1) {
+						getListener().text.append("no such element ln : 115 " + getClass().getName()
+								+ "\n");
+					}
+					System.exit(0);
 				}
 			}
 		});
