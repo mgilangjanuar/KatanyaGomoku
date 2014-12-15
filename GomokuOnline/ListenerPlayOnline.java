@@ -87,6 +87,7 @@ public class ListenerPlayOnline extends ListenerGomoku {
 									dataOnServer.indexOf(',')));
 							int j = Integer.parseInt(dataOnServer.substring(
 									dataOnServer.indexOf(',') + 1).trim());
+							getAssets(i, j).setName(dataOnServer);
 							if (dataOnServer.charAt(0) == 'X') {
 								if (!firstPlayer) {
 									localTimer.stop();
