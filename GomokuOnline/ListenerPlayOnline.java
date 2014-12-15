@@ -108,7 +108,6 @@ public class ListenerPlayOnline extends ListenerGomoku {
 									getSwingTimer2().start();
 									try {
 										String data1 = in.nextLine();
-										localTimer.stop();
 										int x1 = Integer.parseInt(data1
 												.substring(1,
 														data1.indexOf(',')));
@@ -122,37 +121,64 @@ public class ListenerPlayOnline extends ListenerGomoku {
 												getAssets(x1, y1 + k)
 														.setAssetColor(
 																Color.CYAN);
+												getAssets(x1, y1 + k).setClick(
+														true);
+												getAssets(x1, y1 + k)
+														.setPlayerColor(
+																getBlack()
+																		.getColor());
 											}
 										} else if (kode.charAt(0) == 'v') {
 											for (int k = 0; k < z - 1; k++) {
 												getAssets(x1 + k, y1)
 														.setAssetColor(
 																Color.CYAN);
+												getAssets(x1 + k, y1).setClick(
+														true);
+												getAssets(x1 + k, y1)
+														.setPlayerColor(
+																getBlack()
+																		.getColor());
 											}
 										} else if (kode.charAt(0) == 'd') {
 											for (int k = 0; k < z - 1; k++) {
 												getAssets(x1 + k, y1 + k)
 														.setAssetColor(
 																Color.CYAN);
+												getAssets(x1 + k, y1 + k)
+														.setClick(true);
+												getAssets(x1 + k, y1 + k)
+														.setPlayerColor(
+																getBlack()
+																		.getColor());
 											}
 										} else if (kode.charAt(0) == 'b') {
 											for (int k = 0; k < z - 1; k++) {
 												getAssets(x1 + k, y1 - k)
 														.setAssetColor(
 																Color.CYAN);
+												getAssets(x1 + k, y1 - k)
+														.setClick(true);
+												getAssets(x1 + k, y1 - k)
+														.setPlayerColor(
+																getBlack()
+																		.getColor());
 											}
 										}
 										getSwingTimer1().stop();
 										getSwingTimer2().stop();
 										setEnable(false);
-										getAssetPlayer1().setAssetColor(Color.CYAN);
+										getAssetPlayer1().setAssetColor(
+												Color.CYAN);
 										getAssetPlayer2().setAssetColor(null);
 										status.setText("Selamat "
 												+ getBlack().getName()
 												+ " menang!");
-										JOptionPane.showMessageDialog(null,
-												getBlack().getName()
-														+ " menang! Yeay! Cie kalah ^^");
+										JOptionPane
+												.showMessageDialog(
+														null,
+														getBlack().getName()
+																+ " menang! Yeay! Cie kalah ^^");
 										loadMusic();
 									} catch (Exception e1) {
 
@@ -182,7 +208,6 @@ public class ListenerPlayOnline extends ListenerGomoku {
 									getSwingTimer2().stop();
 									try {
 										String data1 = in.nextLine();
-										localTimer.stop();
 										int x1 = Integer.parseInt(data1
 												.substring(1,
 														data1.indexOf(',')));
@@ -196,37 +221,67 @@ public class ListenerPlayOnline extends ListenerGomoku {
 												getAssets(x1, y1 + k)
 														.setAssetColor(
 																Color.CYAN);
+												getAssets(x1, y1 + k).setClick(
+														true);
+												getAssets(x1, y1 + k)
+														.setPlayerColor(
+																getWhite()
+																		.getColor());
 											}
 										} else if (kode.charAt(0) == 'v') {
 											for (int k = 0; k < z - 1; k++) {
 												getAssets(x1 + k, y1)
 														.setAssetColor(
 																Color.CYAN);
+												getAssets(x1 + k, y1).setClick(
+														true);
+												getAssets(x1 + k, y1)
+														.setPlayerColor(
+																getWhite()
+																		.getColor());
 											}
 										} else if (kode.charAt(0) == 'd') {
 											for (int k = 0; k < z - 1; k++) {
 												getAssets(x1 + k, y1 + k)
 														.setAssetColor(
 																Color.CYAN);
+												getAssets(x1 + k, y1 + k)
+														.setClick(true);
+												getAssets(x1 + k, y1 + k)
+														.setPlayerColor(
+																getWhite()
+																		.getColor());
 											}
 										} else if (kode.charAt(0) == 'b') {
 											for (int k = 0; k < z - 1; k++) {
 												getAssets(x1 + k, y1 - k)
 														.setAssetColor(
 																Color.CYAN);
+												getAssets(x1 + k, y1 - k)
+														.setClick(true);
+												getAssets(x1 + k, y1 - k)
+														.setPlayerColor(
+																getWhite()
+																		.getColor());
 											}
 										}
 										getSwingTimer1().stop();
 										getSwingTimer2().stop();
 										setEnable(false);
 										getAssetPlayer1().setAssetColor(null);
-										getAssetPlayer2().setAssetColor(Color.CYAN);
+										getAssetPlayer2().setAssetColor(
+												Color.CYAN);
+										assets[i][j].setClick(true);
+										assets[i][j].setPlayerColor(getWhite()
+												.getColor());
 										status.setText("Selamat "
 												+ getWhite().getName()
 												+ " menang!");
-										JOptionPane.showMessageDialog(null,
-												getWhite().getName()
-														+ " menang! Yeay! Cie kalah ^^");
+										JOptionPane
+												.showMessageDialog(
+														null,
+														getWhite().getName()
+																+ " menang! Yeay! Cie kalah ^^");
 										loadMusic();
 									} catch (Exception e1) {
 
