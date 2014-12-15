@@ -39,7 +39,7 @@ public class ListenerPlayOnline extends ListenerGomoku {
 	String host = "ftp.lalala.com"; // host ftp
 	String user = "gilang"; //username ftp
 	String pass = "tanggallahir"; //pass ftp
-	String path = "http://semardev.com/"; // path di ftp misal "http://semardev.com/"
+	String path = "http://semardev.com/"; // path di ftp
 
 	/**
 	 * Konstruktor default dari kelas ListenerPlayOnline yang mendefinisikan
@@ -291,8 +291,6 @@ public class ListenerPlayOnline extends ListenerGomoku {
 									setEnable(false);
 								}
 							}
-							getAssets(i, j).setEnabled(false);
-							assets[i][j].setName(dataOnServer);
 							in.close();
 						}
 					} catch (NullPointerException e1) {
@@ -318,36 +316,65 @@ public class ListenerPlayOnline extends ListenerGomoku {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		super.actionPerformed(e);
-		Asset cell = (Asset) e.getSource();
-		tempData = cell.getName();
-		receiveData.stop();
-		PrintWriter pw;
-		try {
-			text.append("send data" + "\n");
-			pw = new PrintWriter("data.txt");
-			pw.println(cell.getName());
-			pw.println(getTimer1().getText());
-			pw.println(getTimer2().getText());
-			pw.close();
-			on.uploadFile("data.txt", "gomoku"
-					+ getBlack().getName().toLowerCase()
-					+ getWhite().getName().toLowerCase() + getRows()
-					+ getCols() + ".txt", "game/");
-		} catch (FileNotFoundException e1) {
-			text.append("file not found for data.txt ln : 181 "
-					+ getClass().getName() + "\n");
-		} catch (NoSuchElementException e1) {
-			text.append("no such element ln : 183 " + getClass().getName()
-					+ "\n");
-		} finally {
-			receiveData.start();
+		if (!gameover) {			
+			receiveData.stop();
+			Asset cell = (Asset) e.getSource();
+			cell.setClick(true);
+			tempData = cell.getName();
+			if (!firstPlayer) {
+				cell.setPlayerColor(getWhite().getColor());
+				cell.setName("O" + cell.getName());
+				getStatus().setText(
+						"Giliran " + getBlack().getName() + " jalan.");
+				getAssetPlayer1().setAssetColor(Color.CYAN);
+				getAssetPlayer2().setAssetColor(null);
+				getSwingTimer1().start();
+				getSwingTimer2().stop();
+			} else {
+				cell.setPlayerColor(getBlack().getColor());
+				cell.setName("X" + cell.getName());
+				getStatus().setText(
+						"Giliran " + getWhite().getName() + " jalan.");
+				getAssetPlayer1().setAssetColor(null);
+				getAssetPlayer2().setAssetColor(Color.CYAN);
+				getSwingTimer1().stop();
+				getSwingTimer2().start();
+			}
+			setTurn(!getTurn());
+			cell.setEnabled(false);
+			cell.repaint();
+			text.append((firstPlayer ? getBlack().getName() : getWhite()
+					.getName())
+					+ " move to "
+					+ cell.getName().substring(1)
+					+ "\n");			
+			PrintWriter pw;
+			try {
+				text.append("send data" + "\n");
+				pw = new PrintWriter("data.txt");
+				pw.println(cell.getName());
+				pw.println(getTimer1().getText());
+				pw.println(getTimer2().getText());
+				pw.close();
+				on.uploadFile("data.txt", "gomoku"
+						+ getBlack().getName().toLowerCase()
+						+ getWhite().getName().toLowerCase() + getRows()
+						+ getCols() + ".txt", "game/");
+			} catch (FileNotFoundException e1) {
+				text.append("file not found for data.txt ln : 181 "
+						+ getClass().getName() + "\n");
+			} catch (NoSuchElementException e1) {
+				text.append("no such element ln : 183 " + getClass().getName()
+						+ "\n");
+			} finally {
+				receiveData.start();
+			}
+			int x = Integer.parseInt(cell.getName().substring(1,
+					cell.getName().indexOf(',')));
+			int y = Integer.parseInt(cell.getName().substring(
+					cell.getName().indexOf(',') + 1));
+			cekMenang(x, y, cell.getName().substring(0, 1));
 		}
-		int x = Integer.parseInt(cell.getName().substring(1,
-				cell.getName().indexOf(',')));
-		int y = Integer.parseInt(cell.getName().substring(
-				cell.getName().indexOf(',') + 1));
-		cekMenang(x, y, cell.getName().substring(0, 1));
 	}
 
 	@Override
